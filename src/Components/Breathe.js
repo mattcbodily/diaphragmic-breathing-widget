@@ -5,12 +5,21 @@ class Breathe extends Component {
         super();
         this.state = {
             instruction: 'Get Ready',
-            timer: 10
+            timer: 3
         }
     }
 
     componentDidMount(){
         this.handleTick()
+    }
+
+    componentDidUpdate(){
+        if(this.state.instruction === 'Get Ready' && this.state.timer === 0){
+            this.setState({
+                instruction: 'Breathe In',
+                timer: 8
+            })
+        }
     }
 
     handleCount(){
@@ -24,7 +33,6 @@ class Breathe extends Component {
     }
     
     render(){
-        console.log(this.state.timer)
         return (
             <div>
                 <h1>{this.state.instruction}</h1>
