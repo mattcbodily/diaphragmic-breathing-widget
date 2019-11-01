@@ -1,42 +1,37 @@
-import React, {useState, useEffect} from 'react';
+import React, {Component} from 'react';
 
-const Breathe = () => {
-    const [breatheOutTimer, setBreatheOutTimer] = useState(3);
-    const [breatheInTimer, setBreatheInTimer] = useState(8);
-    const [instruction, setInstruction] = useState('Get Ready');
-
-    useEffect(() => {
-        breatheTimer();
-    }, [breatheOutTimer, breatheInTimer, instruction])
-
-    const breatheTimer = async() => {
-        if(instruction === 'Get Ready' || instruction === 'Breathe Out'){
-            setInterval(() => {
-                setBreatheOutTimer(breatheOutTimer - 1)
-                if(breatheOutTimer === 0){
-                    setInstruction('Breathe In')
-                    setBreatheOutTimer(3)
-                }
-            }, 1000)
-        } else if(instruction === 'Breathe In') {
-            setInterval(() => {
-                setBreatheInTimer(breatheInTimer - 1)
-                if(breatheInTimer === 0){
-                    setInstruction('Breathe Out')
-                    setBreatheInTimer(8)
-                }
-            }, 1000)
+class Breathe extends Component {
+    constructor(){
+        super();
+        this.state = {
+            instruction: 'Get Ready',
+            timer: 10
         }
     }
 
-    return (
-        <div>
-            <h1>{instruction}</h1>
-            {instruction === 'Get Ready' || instruction === 'Breathe Out'
-            ? (<h1>{breatheOutTimer}</h1>)
-            : (<h1>{breatheInTimer}</h1>)}
-        </div>
-    )
+    componentDidMount(){
+        this.handleTick()
+    }
+
+    handleCount(){
+        this.setState({
+            timer: this.state.timer - 1
+        })
+    }
+
+    handleTick(){
+        setInterval(() => this.handleCount(), 1000)
+    }
+    
+    render(){
+        console.log(this.state.timer)
+        return (
+            <div>
+                <h1>{this.state.instruction}</h1>
+                <p>{this.state.timer}</p>
+            </div>
+        )
+    }
 }
 
 export default Breathe;
