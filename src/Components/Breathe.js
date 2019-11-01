@@ -5,7 +5,12 @@ class Breathe extends Component {
         super();
         this.state = {
             instruction: 'Get Ready',
-            timer: 3
+            timer: 3,
+            //repetitions will be added by the user for
+            //how many sets of breaths they want to do,
+            //add it as something that decrements after
+            //the breathe out condition in handle instruction
+            repetition: 3
         }
     }
 
@@ -28,11 +33,17 @@ class Breathe extends Component {
     }
 
     handleInstruction(){
-        const {instruction, timer} = this.state;
-        if((instruction === 'Get Ready' && timer === 0) || (instruction === 'Breathe Out' && timer === 0)){
+        const {instruction, timer, repetition} = this.state;
+        if(instruction === 'Get Ready' && timer === 0){
             this.setState({
                 instruction: 'Breathe In',
                 timer: 8
+            })
+        } else if(instruction === 'Breathe Out' && timer === 0){
+            this.setState({
+                instruction: 'Breathe In',
+                timer: 8,
+                repetition: repetition - 1
             })
         } else if(instruction === 'Breathe In' && timer === 0) {
             this.setState({
