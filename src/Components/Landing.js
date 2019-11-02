@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
+import Breathe from './Breathe';
 
 class Landing extends Component {
     constructor(){
         super();
         this.state = {
-            repInput: ''
+            repInput: '',
+            breatheToggle: false
         }
     }
 
@@ -14,17 +16,24 @@ class Landing extends Component {
         })
     }
 
-    handleRepSubmit = () => {
-        this.props.history.push('/breathe')
+    handleToggle = () => {
+        this.setState({
+            breatheToggle: !this.state.breatheToggle
+        })
     }
 
     render(){
+        const {repInput, breatheToggle} = this.state;
         return(
             <div>
-                <input 
-                    value={this.state.repInput}
-                    onChange={(e) => this.handleRepInput(e.target.value)}/>
-                <button onClick={this.handleRepSubmit}>Get Started</button>
+                {!breatheToggle
+                ?(<>
+                    <input 
+                        value={repInput}
+                        onChange={(e) => this.handleRepInput(e.target.value)}/>
+                    <button onClick={this.handleToggle}>Get Started</button>
+                  </>)
+                : (<Breathe />)}
             </div>
         )
     }
