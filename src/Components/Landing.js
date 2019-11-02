@@ -14,12 +14,17 @@ class Landing extends Component {
         })
     }
 
+    handleRepSubmit = () => {
+        this.props.history.push('/breathe')
+    }
+
     render(){
         return(
             <div>
                 <input 
                     value={this.state.repInput}
                     onChange={(e) => this.handleRepInput(e.target.value)}/>
+                <button onClick={this.handleRepSubmit}>Get Started</button>
             </div>
         )
     }

@@ -1,13 +1,11 @@
 import React from 'react';
-import Landing from './Components/Landing';
-import Breathe from './Components/Breathe';
+import routes from './routes';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <Landing />
-      <Breathe />
+      {routes}
     </div>
   );
 }
