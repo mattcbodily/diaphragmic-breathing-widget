@@ -6,6 +6,7 @@ class Landing extends Component {
         super();
         this.state = {
             repInput: '',
+            repetitions: 0,
             breatheToggle: false
         }
     }
@@ -18,22 +19,33 @@ class Landing extends Component {
 
     handleToggle = () => {
         this.setState({
+            repetitions: +this.state.repInput,
             breatheToggle: !this.state.breatheToggle
         })
     }
 
+    handleReps = () => {
+        this.setState({
+            repetitions: this.state.repetitions - 1
+        })
+    }
+
     render(){
-        const {repInput, breatheToggle} = this.state;
+        const {repInput, repetitions, breatheToggle} = this.state;
         return(
             <div>
                 {!breatheToggle
                 ?(<>
-                    <input 
+                    <input
+                        type='number' 
                         value={repInput}
                         onChange={(e) => this.handleRepInput(e.target.value)}/>
                     <button onClick={this.handleToggle}>Get Started</button>
                   </>)
-                : (<Breathe />)}
+                : (<Breathe 
+                        reps={repetitions}
+                        toggleView={this.handleToggle}
+                        handleReps={this.handleReps}/>)}
             </div>
         )
     }

@@ -1,16 +1,11 @@
 import React, {Component} from 'react';
 
 class Breathe extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
             instruction: 'Get Ready',
-            timer: 3,
-            //repetitions will be added by the user for
-            //how many sets of breaths they want to do,
-            //add it as something that decrements after
-            //the breathe out condition in handle instruction
-            repetition: 3
+            timer: 3
         }
     }
 
@@ -33,7 +28,8 @@ class Breathe extends Component {
     }
 
     handleInstruction(){
-        const {instruction, timer, repetition} = this.state;
+        const {instruction, timer} = this.state;
+        let {reps, handleReps, toggleView} = this.props;
         if(instruction === 'Get Ready' && timer === 0){
             this.setState({
                 instruction: 'Breathe In',
@@ -42,21 +38,26 @@ class Breathe extends Component {
         } else if(instruction === 'Breathe Out' && timer === 0){
             this.setState({
                 instruction: 'Breathe In',
-                timer: 8,
-                repetition: repetition - 1
+                timer: 8
             })
+            handleReps()
         } else if(instruction === 'Breathe In' && timer === 0) {
             this.setState({
                 instruction: 'Breathe Out',
                 timer: 3
             })
         }
+        if(reps === 0){
+            toggleView()
+        }
     }
     
     render(){
         const {instruction, timer} = this.state;
+        const {reps} = this.props;
         return (
             <div>
+                <p>Repetition: {reps}</p>
                 <h1>{instruction}</h1>
                 <p>{timer}</p>
             </div>
