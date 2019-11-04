@@ -33,15 +33,15 @@ class Landing extends Component {
     render(){
         const {repInput, repetitions, breatheToggle} = this.state;
         return(
-            <div>
+            <div id='landing-container'>
                 {!breatheToggle
-                ?(<>
+                ?(<section id='breathe-animation-container'>
                     <input
                         type='number' 
                         value={repInput}
                         onChange={(e) => this.handleRepInput(e.target.value)}/>
                     <button onClick={this.handleToggle}>Get Started</button>
-                  </>)
+                  </section>)
                 : (<Breathe 
                         reps={repetitions}
                         toggleView={this.handleToggle}

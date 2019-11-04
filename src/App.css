@@ -2,21 +2,38 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
+#landing-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#breathe-animation-container {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  background-color: #00C7F3;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  animation-name: breathe;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
 }
 
-.App-link {
-  color: #09d3ac;
+@keyframes breathe {
+  0%{
+    height: 200px;
+    width: 200px;
+  }
+  65%{
+    height: 300px;
+    width: 300px;
+  }
+  100%{
+    height: 200px;
+    width: 200px;
+  }
 }
