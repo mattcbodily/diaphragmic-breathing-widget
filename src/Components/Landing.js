@@ -35,7 +35,7 @@ class Landing extends Component {
         return(
             <div id='landing-container'>
                 {!breatheToggle
-                ?(<section id='breathe-animation-container'>
+                ?(<section>
                     <input
                         type='number' 
                         value={repInput}

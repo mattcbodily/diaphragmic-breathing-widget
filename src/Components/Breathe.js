@@ -33,12 +33,12 @@ class Breathe extends Component {
         if(instruction === 'Get Ready' && timer === 0){
             this.setState({
                 instruction: 'Breathe In',
-                timer: 8
+                timer: 7
             })
         } else if(instruction === 'Breathe Out' && timer === 0){
             this.setState({
                 instruction: 'Breathe In',
-                timer: 8
+                timer: 7
             })
             handleReps()
         } else if(instruction === 'Breathe In' && timer === 0) {
@@ -56,9 +56,9 @@ class Breathe extends Component {
         const {instruction, timer} = this.state;
         const {reps} = this.props;
         return (
-            <div>
+            <div id='breathe-animation-container'>
                 <p>Repetition: {reps}</p>
-                <h1>{instruction}</h1>
+                <p>{instruction}</p>
                 <p>{timer}</p>
             </div>
         )
